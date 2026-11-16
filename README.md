@@ -4,6 +4,14 @@
 
 Built as a four-person database systems project at Arizona State University. I led the **inverted-index subsystem**, implementing filename search, Boolean AND/OR queries, and compressed record-ID storage.
 
+## Key Result
+
+Compressed inverted-index storage from **73.16 KB to 22.72 KB (~69% less)** while preserving query results.
+
+<p align="left">
+  <img src="storage.png" alt="Benchmark storage comparison" width="600">
+</p>
+
 ## Demo
 
 ```text
@@ -17,16 +25,6 @@ MATCHING FILES
 database_project.pdf
 database_notes.txt
 ```
-
-## Key Result
-
-In the reproduced benchmark, compressing the inverted search index reduced its storage from **73.16 KB to 22.72 KB — about 69% less storage — while preserving query results.**
-
-| Inverted-index storage | Size |
-|---|---:|
-| Uncompressed | 73.16 KB |
-| Delta + Variable-Byte compressed | **22.72 KB** |
-| Storage reduction | **~69%** |
 
 ## What the System Does
 
