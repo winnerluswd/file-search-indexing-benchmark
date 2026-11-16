@@ -1,3 +1,63 @@
+# File Search & Indexing Benchmark
+
+**A Python file-search system that finds matching files without scanning every stored record, then measures how different indexing strategies affect storage and query cost.**
+
+Built as a four-person database systems project at Arizona State University. I led the **inverted-index subsystem**, implementing filename search, Boolean AND/OR queries, and compressed record-ID storage.
+
+## Demo
+
+```text
+FILES / METADATA
+       ↓
+BUILD SEARCH INDEX
+       ↓
+SEARCH: "database"
+       ↓
+MATCHING FILES
+database_project.pdf
+database_notes.txt
+
+## Key Result
+
+In the reproduced benchmark, compressing the inverted search index reduced its storage from **73.16 KB to 22.72 KB — about 69% less storage — while preserving query results.**
+
+| Inverted-index storage | Size |
+|---|---:|
+| Uncompressed | 73.16 KB |
+| Delta + Variable-Byte compressed | **22.72 KB** |
+| Storage reduction | **~69%** |
+
+## What the System Does
+
+```text
+File metadata
+     ↓
+Build search indexes
+     ↓
+Search for filenames / metadata
+     ↓
+Find matching records
+     ↓
+Compare correctness, storage, page reads, and query performance
+```
+
+The complete team system compares **sequential scan, B+ tree, bitmap indexes, and inverted search indexes** using the same workload and storage framework.
+
+## My Contribution
+
+I led development of the **inverted-index subsystem**. My work included:
+
+- filename tokenization and term lookup;
+- record-ID posting lists;
+- Boolean `AND` / `OR` search;
+- Delta encoding and Variable-Byte compression;
+- compression/decompression round-trip validation;
+- automated tests for search and posting-list correctness.
+
+The shared storage layer, B+ tree, bitmap indexes, synthetic workload, and benchmark harness were implemented collaboratively by other team members. The original team repository and commit history are preserved through this fork.
+
+---
+
 # cse-510-dbmsi-indexing
 A repository for CSE 510's Course Project
 
